@@ -1,0 +1,7 @@
+Host *
+  AddKeysToAgent yes
+  ForwardAgent yes
+  IdentityFile ${SSH_KEY_PATH}
+  StrictHostKeyChecking no
+  User ${SSH_USERNAME}
+  UserKnownHostsFile /dev/null

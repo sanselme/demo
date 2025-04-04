@@ -1,0 +1,28 @@
+---
+services:
+  demo:
+    container_name: devcontainer
+    hostname: devcontainer
+    network_mode: bridge # only supported mode
+    privileged: true # required by /sbin/init
+    stdin_open: true
+    tty: true
+    user: root # required by /sbin/init
+    working_dir: /home/devcontainer/workspace
+    env_file: .env
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - .:/home/devcontainer/workspace
+      - /dev/kmsg:/dev/kmsg:ro # required by kubelets OOM watcher
+      - /lib/modules:/lib/modules:ro # required by cylium
+      - /var/lib/k0s
+      - /var/log/pods
+    ports:
+      - 80:80
+      - 443:443
+      - 6443:6443

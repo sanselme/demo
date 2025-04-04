@@ -1,5 +1,18 @@
 # Readme
 
+```bash
+# create cluster
+./scripts/launch.sh [--configure-ssh]
+
+# deploy maas
+./scripts/maas.sh
+```
+
+## devcontainer
+
+- launch devcontainer
+- `./scripts/maas.sh`
+
 ---
 
 Copyright (c) 2025 Schubert Anselme <schubert@anselm.es>

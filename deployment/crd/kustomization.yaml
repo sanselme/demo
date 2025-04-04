@@ -1,0 +1,27 @@
+---
+buildMetadata:
+  - managedByLabel
+  - originAnnotations
+generatorOptions:
+  disableNameSuffixHash: true
+labels:
+  - pairs:
+      owner: kubernetes
+resources:
+  - # external-snapshotter
+    https://github.com/kubernetes-csi/external-snapshotter/client/config/crd?ref=v8.2.0
+  - # gateway-api
+    https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=v1.2.1
+  - # tlsroute
+    https://raw.githubusercontent.com/kubernetes-sigs/gateway-api/v1.2.1/config/crd/experimental/gateway.networking.k8s.io_tlsroutes.yaml
+  - # prometheus-operator
+    https://github.com/prometheus-community/prometheus-operator?ref=release-0.44
+patches:
+  - target:
+      kind: ClusterRole|ClusterRoleBinding|Deployment|Service|ServiceAccount
+    patch: |
+      $patch: delete
+      apiVersion: APIVERSION
+      kind: KIND
+      metadata:
+        name: NAME

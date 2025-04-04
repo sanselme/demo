@@ -1,0 +1,39 @@
+--- hack/containerd.toml	2025-03-13 11:06:39.000000000 -0400
++++ containerd.toml	2025-03-13 11:13:03.000000000 -0400
+@@ -3,8 +3,8 @@
+ oom_score = 0
+ plugin_dir = ""
+ required_plugins = []
+-root = "/var/lib/containerd"
+-state = "/run/containerd"
++root = "/var/lib/k0s/containerd"
++state = "/var/run/k0s/containerd"
+ temp = ""
+ version = 2
+
+@@ -15,7 +15,7 @@
+   address = ""
+   format = ""
+   gid = 0
+-  level = ""
++  level = "warn"
+   uid = 0
+
+ [grpc]
+@@ -136,7 +136,7 @@
+             NoPivotRoot = false
+             Root = ""
+             ShimCgroup = ""
+-            SystemdCgroup = false
++            SystemdCgroup = true
+
+       [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime]
+         base_runtime_spec = ""
+@@ -175,6 +175,7 @@
+
+   [plugins."io.containerd.internal.v1.opt"]
+     path = "/opt/containerd"
++  address = "/var/run/k0s/containerd.sock"
+
+   [plugins."io.containerd.internal.v1.restart"]
+     interval = "10s"

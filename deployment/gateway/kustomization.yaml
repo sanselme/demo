@@ -1,0 +1,14 @@
+---
+namespace: kube-system
+buildMetadata:
+  - managedByLabel
+  - originAnnotations
+generatorOptions:
+  disableNameSuffixHash: true
+labels:
+  - pairs:
+      owner: kubernetes
+commonAnnotations:
+  cert-manager.io/cluster-issuer: self-signed-ca-issuer
+resources:
+  - gateway.yaml
